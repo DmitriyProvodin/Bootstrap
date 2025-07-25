@@ -1,34 +1,96 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Контакты</title>
-</head>
-<body>
-  <div style="display: flex;">
-    <div style="width: 200px;">
-      <ul>
-        <li><strong>Меню</strong></li>
-        <li>Главная</li>
-        <li>Категории</li>
-        <li>Заказы</li>
-        <li>Контакты</li>
-      </ul>
-    </div>
-    <div style="margin-left: 20px; display: flex;">
-      <form method="post">
-        <h3>Связаться с нами</h3>
-        <input name="name" placeholder="Имя"><br>
-        <input name="email" placeholder="Email"><br>
-        <textarea name="message" placeholder="Сообщение"></textarea><br>
-        <button type="submit">Отправить</button>
-      </form>
-      <div style="margin-left: 30px;">
-        <h3>Наш офис</h3>
-        <p>г. Москва, ул. Примерная, 1</p>
-        <p>Email: example@mail.com</p>
-      </div>
-    </div>
-  </div>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Контакты</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  </head>
+  <body>
+    <main style="display: flex; flex-wrap: nowrap; height: 100vh; max-height: 100vh; overflow-y: hidden;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">Меню</span>
+          </a>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link active" aria-current="page">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                Главная
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                Категории
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                Заказы
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                Контакты
+              </a>
+            </li>
+          </ul>
+          <hr>
+          <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+              <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Контакты</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <form>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Имя</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ваше имя">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                  <input type="text" class="form-control" placeholder="Почта" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Сообщение</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit cursus orci eget convallis. Mauris malesuada est non nunc mollis ornare. Donec eros dui, fringilla sit amet ante at, luctus tristique est. Pellentesque vel convallis enim. Praesent nec felis vitae lacus condimentum auctor. Nunc sollicitudin, nibh vel rhoncus ornare, ligula sem malesuada ex, vitae facilisis tellus leo at felis. Cras vel egestas sem. Nam ut euismod ipsum. Aliquam dui odio, consectetur id malesuada vitae, rutrum condimentum eros. Maecenas sed leo orci. Sed fermentum commodo vestibulum. Praesent ac est vel lectus viverra laoreet. Sed vestibulum rutrum pretium. Donec nec nibh vulputate, venenatis ante in, pretium leo. Ut sed sapien libero. Integer placerat neque ex. 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
 </html>

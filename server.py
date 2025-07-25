@@ -1,47 +1,66 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import urllib.parse
+from urllib.parse import parse_qs
+import os
 
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        pages = {
+        routes = {
             "/": "index.html",
             "/catalog": "catalog.html",
             "/category": "category.html",
-            "/contacts": "contacts.html"
+            "/contacts": "contacts.html",
         }
 
-        page = pages.get(self.path, "index.html")
+        file_name = routes.get(self.path, "index.html")  # По умолчанию — главная
 
-        try:
-            with open(f"templates/{page}", "r", encoding="utf-8") as file:
-                content = file.read()
-        except FileNotFoundError:
+        file_path = os.path.join("templates", file_name)
+
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            self.send_response(200)
+            self.send_header("Content-type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(content.encode("utf-8"))
+        else:
             self.send_error(404, "Страница не найдена")
-            return
-
-        self.send_response(200)
-        self.send_header("Content-type", "text/html; charset=utf-8")
-        self.end_headers()
-        self.wfile.write(content.encode("utf-8"))
 
     def do_POST(self):
-        content_length = int(self.headers["Content-Length"])
-        body = self.rfile.read(content_length)
-        data = urllib.parse.parse_qs(body.decode())
+        if self.path == "/contacts":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8")
+            data = parse_qs(body)
 
-        print("Получены POST-данные:")
-        for key, value in data.items():
-            print(f"{key}: {value}")
+            print("\n--- Получены данные из формы ---")
+            for key, value in data.items():
+                print(f"{key}: {value[0]}")
+            print("----------------------------------\n")
 
-        self.send_response(200)
-        self.send_header("Content-type", "text/html; charset=utf-8")
-        self.end_headers()
-        self.wfile.write(b"<h1>Спасибо! Данные получены.</h1>")
+            # Вернуть обратно contacts.html
+            file_path = os.path.join("templates", "contacts.html")
+            if os.path.exists(file_path):
+                with open(file_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+
+                self.send_response(200)
+                self.send_header("Content-type", "text/html; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(content.encode("utf-8"))
+            else:
+                self.send_error(404, "Страница не найдена")
+        else:
+            self.send_error(404, "POST-запрос поддерживается только для /contacts")
+
+
+def run():
+    port = 8000
+    server_address = ('', port)
+    httpd = HTTPServer(server_address, MyHandler)
+    print(f"Сервер запущен на http://localhost:{port}")
+    httpd.serve_forever()
 
 
 if __name__ == "__main__":
-    server_address = ("", 8000)
-    httpd = HTTPServer(server_address, MyHandler)
-    print("Сервер запущен на http://localhost:8000")
-    httpd.serve_forever()
+    run()
