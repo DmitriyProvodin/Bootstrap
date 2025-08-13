@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Каталог — MyShop{% endblock %}
+{% block nav_catalog %}active{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Каталог</h1>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Ноутбук</h5>
+          <p class="card-text">Лёгкий и мощный ноутбук.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Наушники</h5>
+          <p class="card-text">Беспроводные, с шумоподавлением.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

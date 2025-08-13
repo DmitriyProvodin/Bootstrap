@@ -1,0 +1,33 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Главная — MyShop{% endblock %}
+{% block nav_home %}active{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Главная</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Товар 1</h5>
+          <p class="card-text">Краткое описание товара 1.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Товар 2</h5>
+          <p class="card-text">Краткое описание товара 2.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Товар 3</h5>
+          <p class="card-text">Краткое описание товара 3.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

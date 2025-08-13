@@ -1,0 +1,51 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Контакты — MyShop{% endblock %}
+{% block nav_contacts %}active{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Контакты</h1>
+
+  {% if sent %}
+    <div class="alert alert-success" role="alert">
+      Спасибо{% if name %}, {{ name }}{% endif %}! Ваше сообщение отправлено.
+    </div>
+  {% endif %}
+
+  <div class="row g-4">
+    <!-- Левая колонка: форма -->
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Форма обратной связи</h5>
+          <form method="post" action="/contacts/">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Телефон</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Сообщение</label>
+              <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Правая колонка: информация -->
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Наш офис</h5>
+          <p class="card-text">г. Алматы, ул. Примерная, 1</p>
+          <p class="card-text">Email: info@example.com</p>
+          <p class="card-text">Телефон: +7 (999) 123-45-67</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
