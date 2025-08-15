@@ -15,6 +15,7 @@ env/
 
 # Django / DB
 *.sqlite3
+media/
 
 # Misc
 *.log

@@ -1,28 +1,26 @@
-# MyShop (учебный проект)
+# MyShop (PostgreSQL, модели, фикстуры, команда)
 
-Интернет-магазин на Django. Проект содержит 4 страницы (Главная, Каталог, Категория, Контакты), стилизованные с помощью Bootstrap.
+Продолжение учебного проекта. Подключён PostgreSQL, модели Category и Product, админка, фикстуры, кастомная команда, медиа.
 
-## Установка и запуск
+## Быстрый старт
 ```bash
+cd myshop_pg
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
+
 pip install -r requirements.txt
+
+# укажи свои данные подключения в .env
 python manage.py migrate
+python manage.py createsuperuser  # создать суперпользователя
+python manage.py load_test_data   # загрузить фикстуры
 python manage.py runserver
 ```
 
-Откройте:
-- http://127.0.0.1:8000/ — Главная
-- http://127.0.0.1:8000/catalog/ — Каталог
-- http://127.0.0.1:8000/category/ — Категория
+Открой:
+- http://127.0.0.1:8000/ — Главная (печатает последние 5 продуктов в консоль)
+- http://127.0.0.1:8000/admin/ — Админка
 - http://127.0.0.1:8000/contacts/ — Контакты
 
-## Стек
-- Python 3.10+
-- Django 4.2+
-- Bootstrap 5 (CDN)
-
-## GitFlow
-- main
-- develop
-- feature/homework-XX → PR в develop
+## Скриншоты
+Скриншоты для задания 5 сохраняйте в папке `screenshots/` в корне репозитория.

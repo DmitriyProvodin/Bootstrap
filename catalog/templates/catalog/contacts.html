@@ -1,18 +1,14 @@
 {% extends 'catalog/base.html' %}
 {% block title %}Контакты — MyShop{% endblock %}
 {% block nav_contacts %}active{% endblock %}
-
 {% block content %}
   <h1 class="mb-4">Контакты</h1>
-
   {% if sent %}
     <div class="alert alert-success" role="alert">
       Спасибо{% if name %}, {{ name }}{% endif %}! Ваше сообщение отправлено.
     </div>
   {% endif %}
-
   <div class="row g-4">
-    <!-- Левая колонка: форма -->
     <div class="col-12 col-lg-6">
       <div class="card">
         <div class="card-body">
@@ -36,7 +32,6 @@
         </div>
       </div>
     </div>
-    <!-- Правая колонка: информация -->
     <div class="col-12 col-lg-6">
       <div class="card">
         <div class="card-body">
