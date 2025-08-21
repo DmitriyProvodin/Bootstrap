@@ -1,26 +1,19 @@
-# MyShop (PostgreSQL, модели, фикстуры, команда)
 
-Продолжение учебного проекта. Подключён PostgreSQL, модели Category и Product, админка, фикстуры, кастомная команда, медиа.
+# myshop
 
-## Быстрый старт
-```bash
-cd myshop_pg
+Учебный Django-проект с PostgreSQL и приложением `catalog` (модели Category и Product).
+
+## Развёртывание
+```
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# Windows: venv\Scripts\activate
+# macOS/Linux: source venv/bin/activate
 
 pip install -r requirements.txt
-
-# укажи свои данные подключения в .env
+cp .env_template .env  # заполните переменные
 python manage.py migrate
-python manage.py createsuperuser  # создать суперпользователя
-python manage.py load_test_data   # загрузить фикстуры
+python manage.py createsuperuser
+python manage.py load_test_data
 python manage.py runserver
 ```
-
-Открой:
-- http://127.0.0.1:8000/ — Главная (печатает последние 5 продуктов в консоль)
-- http://127.0.0.1:8000/admin/ — Админка
-- http://127.0.0.1:8000/contacts/ — Контакты
-
-## Скриншоты
-Скриншоты для задания 5 сохраняйте в папке `screenshots/` в корне репозитория.
+Админка: http://127.0.0.1:8000/admin/

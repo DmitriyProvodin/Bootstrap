@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Смартфоны",
-      "description": "Мобильные телефоны"
+      "description": "Мобильные устройства"
     }
   },
   {
@@ -13,14 +13,6 @@
     "fields": {
       "name": "Ноутбуки",
       "description": "Персональные компьютеры"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 3,
-    "fields": {
-      "name": "Аксессуары",
-      "description": "Сопутствующие товары"
     }
   }
 ]
