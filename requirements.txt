@@ -1,4 +1,4 @@
-Django
-django-environ
+Django>=4.2
 psycopg2-binary
 Pillow
+ipython
