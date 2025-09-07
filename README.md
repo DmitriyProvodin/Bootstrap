@@ -1,3 +1,3 @@
-# MyShop Django Project
+# MyShop with Blog
 
-Интернет-магазин на Django с PostgreSQL.
+Django project with catalog and blog apps.
