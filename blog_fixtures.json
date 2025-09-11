@@ -1,0 +1,12 @@
+[
+  {
+    "model": "blog.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "Привет, блог!",
+      "content": "Это первая запись в блоге.",
+      "is_published": true,
+      "views_count": 0
+    }
+  }
+]

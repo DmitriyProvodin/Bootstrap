@@ -1,3 +1,1 @@
-# MyShop with Blog
-
-Django project with catalog and blog apps.
+MyShop final project with catalog and blog\nSee README in previous messages for run instructions.

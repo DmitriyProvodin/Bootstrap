@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-5">
+    {% if product.image %}<img src="{{ product.image.url }}" class="img-fluid">{% endif %}
+  </div>
+  <div class="col-md-7">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p><strong>Цена:</strong> {{ product.price }} ₽</p>
+    <p><strong>Категория:</strong> {{ product.category }}</p>
+    <a href="/" class="btn btn-secondary">Назад</a>
+  </div>
+</div>
+{% endblock %}
