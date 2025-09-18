@@ -1,3 +1,6 @@
-Django>=4.2
-python-dotenv
-Pillow
+asgiref==3.8.1
+Django==4.2.16
+pillow==10.4.0
+python-dotenv==1.0.1
+sqlparse==0.5.1
+tzdata==2025.1
