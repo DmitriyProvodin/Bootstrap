@@ -5,13 +5,11 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import User
 from .forms import UserRegisterForm, UserLoginForm
-
 class UserRegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = 'users/register.html'
     success_url = reverse_lazy('catalog:home')
-
     def form_valid(self, form):
         response = super().form_valid(form)
         try:
@@ -25,10 +23,8 @@ class UserRegisterView(CreateView):
         except Exception:
             pass
         return response
-
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
     authentication_form = UserLoginForm
-
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('catalog:home')

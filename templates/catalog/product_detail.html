@@ -9,8 +9,15 @@
     <p>{{ product.description }}</p>
     <p><strong>Цена:</strong> {{ product.price }} ₽</p>
     <p><strong>Категория:</strong> {{ product.category }}</p>
-    <a href="{% url 'catalog:product_edit' product.pk %}" class="btn btn-warning">Редактировать</a>
-    <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+    {% if user == product.owner %}
+      <a href="{% url 'catalog:product_edit' product.pk %}" class="btn btn-warning">Редактировать</a>
+    {% endif %}
+    {% if user == product.owner or user.has_perm('catalog.delete_product') %}
+      <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+    {% endif %}
+    {% if user.has_perm('catalog.can_unpublish_product') %}
+      <form method="post" action="{% url 'catalog:product_unpublish' product.pk %}" style="display:inline">{% csrf_token %}<button class="btn btn-secondary">Отменить публикацию</button></form>
+    {% endif %}
     <a href="/" class="btn btn-secondary">Назад</a>
   </div>
 </div>

@@ -1,31 +1,12 @@
-# Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-*.pdb
-*.egg-info/
-*.egg
-
-# Django
 db.sqlite3
 media/
 staticfiles/
-*.log
-
-# Environment
 .env
-*.env
-
-# Virtualenv
 .venv/
 venv/
 env/
-
-# IDE
 .idea/
 .vscode/
-
-# OS
 .DS_Store
-Thumbs.db
