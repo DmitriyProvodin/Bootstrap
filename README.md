@@ -1,18 +1,2 @@
-# MyShop Final Project
-## Запуск
-1. pip install -r requirements.txt
-2. cp .env_template .env  # отредактировать, если нужно
-3. python manage.py makemigrations
-4. python manage.py migrate
-5. python manage.py createsuperuser
-6. python manage.py create_groups
-7. python manage.py load_test_data  # если добавлена команда
-8. python manage.py runserver
-## Работа с пользователями
-- Регистрация: /users/register/ (письмо печатается в консоли)
-- Вход: /users/login/ (email + пароль)
-- Выход: /users/logout/
-- CRUD продуктов (создание/редактирование/удаление) доступен только авторизованным пользователям
-## Модерация продуктов
-- После миграций выполните: python manage.py create_groups
-- Группа 'Модератор продуктов' получит права can_unpublish_product и delete_product
+MyShop final project (with Redis, Postgres, caching, groups, tests)
+See .env_template for environment variables. Run migrations, create superuser, run create_groups, then runserver.

@@ -1,22 +1,44 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.views.generic import (ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView)
-from .models import Product
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+from .models import Product, Category
 from .forms import ProductForm
+from .services import get_products_by_category
+
 class HomeView(ListView):
     model = Product
     template_name = 'catalog/home.html'
     context_object_name = 'products'
     paginate_by = 6
     def get_queryset(self):
-        return Product.objects.select_related('category').order_by('-created_at')
+        cache_key = 'products_list'
+        products = cache.get(cache_key)
+        if not products:
+            products = Product.objects.select_related('category').order_by('-created_at')
+            cache.set(cache_key, products, 60*5)
+        return products
+
+@method_decorator(cache_page(60*15), name='dispatch')
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'catalog/product_detail.html'
     context_object_name = 'product'
-class ContactsView(TemplateView):
-    template_name = 'catalog/contacts.html'
+
+class CategoryProductsView(ListView):
+    model = Product
+    template_name = 'catalog/category_products.html'
+    context_object_name = 'products'
+    def get_queryset(self):
+        return get_products_by_category(self.kwargs.get('category_id'))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(pk=self.kwargs.get('category_id'))
+        return context
+
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
@@ -26,6 +48,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse_lazy('catalog:product_detail', kwargs={'pk': self.object.pk})
+
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
@@ -38,6 +61,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
     def get_success_url(self):
         return reverse_lazy('catalog:product_detail', kwargs={'pk': self.object.pk})
+
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = 'catalog/product_confirm_delete.html'
@@ -48,6 +72,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
             from django.core.exceptions import PermissionDenied
             raise PermissionDenied()
         return super().dispatch(request, *args, **kwargs)
+
 class UnpublishProductView(PermissionRequiredMixin, TemplateView):
     permission_required = 'catalog.can_unpublish_product'
     template_name = 'catalog/unpublish_result.html'

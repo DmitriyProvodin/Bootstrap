@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     description = models.TextField(blank=True, verbose_name='Описание')
@@ -9,9 +11,9 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
     def __str__(self):
         return self.name
+
 class Product(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Опубликован')
-    from django.conf import settings
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='products', verbose_name='Владелец', null=True, blank=True)
     name = models.CharField(max_length=255, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
@@ -23,8 +25,6 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
-        permissions = [
-            ('can_unpublish_product', 'Может отменять публикацию продукта'),
-        ]
+        permissions = [('can_unpublish_product', 'Может отменять публикацию продукта')]
     def __str__(self):
         return self.name

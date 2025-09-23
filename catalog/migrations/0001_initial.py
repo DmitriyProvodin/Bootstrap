@@ -1,1 +1,1 @@
-# dummy migration
+# migrations placeholder
