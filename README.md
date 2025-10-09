@@ -1,8 +1,3 @@
-# Сервис рассылок (курсовая работа)
+# Курсовая работа: Сервис рассылок
 
-Установка:
-1. cp .env_template .env
-2. pip install -r requirements.txt
-3. python manage.py migrate
-4. python manage.py createsuperuser
-5. python manage.py runserver
+Инструкция: см. .env_template
