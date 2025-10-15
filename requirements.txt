@@ -1,6 +1,4 @@
 Django>=4.2
-psycopg2-binary
+djangorestframework
 python-dotenv
 Pillow
-django-redis
-apscheduler
