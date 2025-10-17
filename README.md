@@ -1,14 +1,19 @@
-LMS DRF project
+LMS DRF project - fixed version
 
-Run:
-1. python -m venv .venv
-2. source .venv/bin/activate
-3. pip install -r requirements.txt
-4. python manage.py migrate
-5. python manage.py createsuperuser
-6. python manage.py runserver
+Quick start:
+1. copy .env_template to .env and adjust POSTGRES credentials
+2. python -m venv .venv
+3. source .venv/bin/activate
+4. pip install -r requirements.txt
+5. python manage.py migrate
+6. python manage.py createsuperuser
+7. python manage.py runserver
 
-Endpoints:
-/api/courses/ (ViewSet)
-/api/lessons/ (ListCreate)
-/api/lessons/<pk>/ (RetrieveUpdateDestroy)
+API endpoints:
+- /api/courses/
+- /api/lessons/
+- /api/lessons/<pk>/
+
+Notes:
+- .gitignore present
+- migrations for users and courses included
