@@ -1,4 +1,4 @@
-LMS DRF project - fixed version
+LMS DRF project - final
 
 Quick start:
 1. copy .env_template to .env and adjust POSTGRES credentials
@@ -13,7 +13,10 @@ API endpoints:
 - /api/courses/
 - /api/lessons/
 - /api/lessons/<pk>/
+- /api/users/profiles/<pk>/
+- /api/users/payments/?course=1&method=cash&ordering=-paid_at
 
 Notes:
 - .gitignore present
 - migrations for users and courses included
+- management command users:create_payments to populate sample payments
