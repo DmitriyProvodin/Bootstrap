@@ -4,8 +4,10 @@ class Course(models.Model):
     title = models.CharField(max_length=255)
     preview = models.ImageField(upload_to='courses/', blank=True, null=True)
     description = models.TextField(blank=True)
+
     def __str__(self):
         return self.title
+
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, related_name='lessons', on_delete=models.CASCADE)
@@ -13,5 +15,6 @@ class Lesson(models.Model):
     description = models.TextField(blank=True)
     preview = models.ImageField(upload_to='lessons/', blank=True, null=True)
     video_url = models.URLField(blank=True)
+
     def __str__(self):
         return f"{self.course.title} - {self.title}"

@@ -4,7 +4,9 @@ import django.contrib.auth.models
 
 class Migration(migrations.Migration):
     initial = True
-    dependencies = [('auth','0012_alter_user_first_name_max_length'),]
+    dependencies = [
+        ('auth', '0012_alter_user_first_name_max_length'),
+    ]
     operations = [
         migrations.CreateModel(
             name='User',
@@ -21,7 +23,7 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=True)),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now)),
             ],
-            options={ 'abstract': False, },
+            options = {'abstract': False},
             managers=[('objects', django.contrib.auth.models.UserManager()),],
         ),
     ]

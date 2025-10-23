@@ -1,4 +1,4 @@
-LMS DRF project - final
+LMS DRF project - ready for submission
 
 Quick start:
 1. copy .env_template to .env and adjust POSTGRES credentials
@@ -13,10 +13,10 @@ API endpoints:
 - /api/courses/
 - /api/lessons/
 - /api/lessons/<pk>/
-- /api/users/profiles/<pk>/
-- /api/users/payments/?course=1&method=cash&ordering=-paid_at
+- /api/users/profiles/
+- /api/users/payments/
 
 Notes:
-- .gitignore present
-- migrations for users and courses included
-- management command users:create_payments to populate sample payments
+- django-filter configured and included in REST_FRAMEWORK
+- Payment model, serializers, viewset with filtering and ordering implemented
+- .gitignore and .env_template included
