@@ -5,5 +5,3 @@ django-filter
 python-dotenv
 psycopg2-binary
 Pillow
-black
-flake8
