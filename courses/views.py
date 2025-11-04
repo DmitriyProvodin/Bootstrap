@@ -1,15 +1,18 @@
 from rest_framework import viewsets, permissions
 from rest_framework.exceptions import PermissionDenied
-from .models import Course, Lesson
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Course, Lesson, Subscription
 from .serializers import CourseSerializer, LessonSerializer
+from .paginators import StandardResultsSetPagination
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
 
     def perform_create(self, serializer):
-        # запрет на создание для модераторов
         if self.request.user.groups.filter(name='moderators').exists():
             raise PermissionDenied('Moderators are not allowed to create courses.')
         serializer.save(owner=self.request.user)
@@ -24,9 +27,9 @@ class LessonViewSet(viewsets.ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
 
     def perform_create(self, serializer):
-        # запрет на создание для модераторов
         if self.request.user.groups.filter(name='moderators').exists():
             raise PermissionDenied('Moderators are not allowed to create lessons.')
         serializer.save(owner=self.request.user)
@@ -36,3 +39,23 @@ class LessonViewSet(viewsets.ModelViewSet):
         if user.is_authenticated and user.groups.filter(name='moderators').exists():
             return Lesson.objects.all()
         return Lesson.objects.filter(owner=user)
+
+class SubscriptionAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        course_id = request.data.get('course')
+        if not course_id:
+            return Response({'detail': 'course id required'}, status=400)
+        try:
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist:
+            return Response({'detail': 'course not found'}, status=404)
+        subs = Subscription.objects.filter(user=user, course=course)
+        if subs.exists():
+            subs.delete()
+            return Response({'message': 'subscription removed'})
+        else:
+            Subscription.objects.create(user=user, course=course)
+            return Response({'message': 'subscription added'})

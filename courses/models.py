@@ -18,3 +18,13 @@ class Lesson(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lessons')
     def __str__(self):
         return f"{self.course.title} - {self.title}"
+
+class Subscription(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='subscriptions')
+    course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='subscriptions')
+
+    class Meta:
+        unique_together = ('user', 'course')
+
+    def __str__(self):
+        return f"Subscription: {self.user.email} -> {self.course.title}"
