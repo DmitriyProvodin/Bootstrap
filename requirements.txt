@@ -2,6 +2,8 @@ Django>=4.2
 djangorestframework
 djangorestframework-simplejwt
 django-filter
+drf-spectacular
 python-dotenv
 psycopg2-binary
+stripe
 Pillow

@@ -23,5 +23,5 @@ class UserSerializer(serializers.ModelSerializer):
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ('id','user','paid_at','course','lesson','amount','method')
-        read_only_fields = ('paid_at',)
+        fields = ('id','user','paid_at','course','lesson','amount','method','stripe_session_id','stripe_payment_url')
+        read_only_fields = ('paid_at','stripe_session_id','stripe_payment_url')

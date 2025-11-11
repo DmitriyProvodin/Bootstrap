@@ -1,0 +1,17 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {"password": "pbkdf2_sha256$260000$demo$demo", "email": "demo@example.com", "is_superuser": false, "is_staff": false, "is_active": true}
+  },
+  {
+    "model": "courses.course",
+    "pk": 1,
+    "fields": {"title": "Demo Course", "description": "Demo course", "price": "9.99", "owner": 1}
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 1,
+    "fields": {"course": 1, "title": "Demo Lesson", "description": "Demo lesson", "owner": 1}
+  }
+]

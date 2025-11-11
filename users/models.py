@@ -21,6 +21,8 @@ class Payment(models.Model):
     lesson = models.ForeignKey('courses.Lesson', on_delete=models.SET_NULL, blank=True, null=True, related_name='payments')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES)
+    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
+    stripe_payment_url = models.URLField(blank=True, null=True)
     def __str__(self):
         target = self.course.title if self.course else (self.lesson.title if self.lesson else 'Unknown')
         return f"Payment {self.id} by {self.user.email} for {target}"
