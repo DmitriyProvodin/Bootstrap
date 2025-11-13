@@ -3,6 +3,8 @@ djangorestframework
 djangorestframework-simplejwt
 django-filter
 drf-spectacular
+django-celery-beat
+celery[redis]
 python-dotenv
 psycopg2-binary
 stripe
