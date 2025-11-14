@@ -17,7 +17,7 @@ class CourseSerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True)
     class Meta:
         model = Course
-        fields = ('id','title','preview','description','price','lessons_count','lessons','owner','is_subscribed')
+        fields = ('id','title','preview','description','price','lessons_count','lessons','owner','is_subscribed','updated_at')
     def get_lessons_count(self, obj):
         return obj.lessons.count()
     def get_is_subscribed(self, obj):

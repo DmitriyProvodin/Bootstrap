@@ -3,7 +3,6 @@ from rest_framework.test import APIClient
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from courses.models import Course, Lesson
-
 User = get_user_model()
 
 class LessonCRUDTestCase(TestCase):

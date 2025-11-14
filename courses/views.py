@@ -1,10 +1,10 @@
 from rest_framework import viewsets, permissions
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Course, Lesson, Subscription
 from .serializers import CourseSerializer, LessonSerializer
 from .paginators import StandardResultsSetPagination
+from .tasks import send_course_update_emails
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
@@ -16,6 +16,11 @@ class CourseViewSet(viewsets.ModelViewSet):
         if self.request.user.groups.filter(name='moderators').exists():
             raise PermissionDenied('Moderators are not allowed to create courses.')
         serializer.save(owner=self.request.user)
+
+    def perform_update(self, serializer):
+        course = serializer.save()
+        # enqueue sending emails to subscribers
+        send_course_update_emails.delay(course.id)
 
     def get_queryset(self):
         user = self.request.user
