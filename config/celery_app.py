@@ -6,8 +6,8 @@ app = Celery('config')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 app.conf.beat_schedule = {
-    'deactivate-inactive-users-daily': {
-        'task': 'users.tasks.deactivate_inactive_users',
-        'schedule': crontab(minute=0, hour=0),
+    'send-due-reminders-every-hour': {
+        'task': 'habits.tasks.send_due_reminders',
+        'schedule': crontab(minute=0, hour='*'),
     },
 }
