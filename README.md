@@ -1,12 +1,37 @@
-Habits Tracker
+# Платформа онлайн-обучения — запуск через Docker
 
-Setup:
-1. copy .env_template -> .env and set credentials
-2. pip install -r requirements.txt
-3. python manage.py migrate
-4. python manage.py createsuperuser
-5. Run Redis
-6. celery -A config.celery_app worker -l info
-7. celery -A config.celery_app beat -l info
-8. runserver
-Docs: /api/docs/
+## 📦 Требования
+- Docker
+- Docker Compose
+
+## ⚙️ Установка
+
+1. Скопируйте шаблон окружения:
+
+```bash
+cp .env.example .env
+```
+
+2. Заполните необходимые переменные.
+
+3. Соберите и запустите весь проект:
+
+```bash
+docker-compose up --build
+```
+
+## 🧩 Сервисы
+
+| Сервис | Порт | Проверка |
+|--------|------|-----------|
+| Backend (Django) | 8000 | http://localhost:8000 |
+| PostgreSQL | 5432 | docker exec -it postgres psql -U postgres |
+| Redis | 6379 | redis-cli ping |
+| Celery | — | docker logs celery |
+| Celery Beat | — | docker logs celery_beat |
+
+## 🛑 Остановка контейнеров
+
+```bash
+docker-compose down
+```

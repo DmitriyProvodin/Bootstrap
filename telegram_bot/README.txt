@@ -1,1 +1,0 @@
-Telegram integration: set TELEGRAM_BOT_TOKEN and allow users to register chat ids in profile.
