@@ -1,37 +1,11 @@
-# Платформа онлайн-обучения — запуск через Docker
+# Habit Tracker (backend) - skeleton
+This repository contains a minimal Django + DRF project skeleton implementing the Habit Tracker assignment.
+It includes:
+- Habit model with validators
+- DRF serializers and viewsets (CRUD, pagination)
+- Telegram integration stub
+- Celery task stub for scheduled reminders
+- CORS and env-variable usage in settings
+- Basic tests
 
-## 📦 Требования
-- Docker
-- Docker Compose
-
-## ⚙️ Установка
-
-1. Скопируйте шаблон окружения:
-
-```bash
-cp .env.example .env
-```
-
-2. Заполните необходимые переменные.
-
-3. Соберите и запустите весь проект:
-
-```bash
-docker-compose up --build
-```
-
-## 🧩 Сервисы
-
-| Сервис | Порт | Проверка |
-|--------|------|-----------|
-| Backend (Django) | 8000 | http://localhost:8000 |
-| PostgreSQL | 5432 | docker exec -it postgres psql -U postgres |
-| Redis | 6379 | redis-cli ping |
-| Celery | — | docker logs celery |
-| Celery Beat | — | docker logs celery_beat |
-
-## 🛑 Остановка контейнеров
-
-```bash
-docker-compose down
-```
+Note: This is a skeleton to help you finish the course project — run `pip install -r requirements.txt` and follow Django setup steps.
