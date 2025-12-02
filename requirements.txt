@@ -7,3 +7,9 @@ redis
 python-dotenv
 django-cors-headers
 python-telegram-bot
+pytest
+pytest-django
+pytest-cov
+pytest-factoryboy
+faker
+factory_boy

@@ -1,0 +1,1 @@
+def test_permissions(): assert True
