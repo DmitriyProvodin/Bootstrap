@@ -1,26 +1,21 @@
-name: CI
+name: CI / Build / Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ develop ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ develop ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
-
-      - name: Install dependencies
+          python-version: "3.11"
+      - name: Install deps
         run: pip install -r requirements.txt
-
       - name: Run tests
         run: pytest
