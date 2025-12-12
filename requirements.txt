@@ -1,0 +1,15 @@
+Django>=4.2
+djangorestframework
+djangorestframework-simplejwt
+psycopg2-binary
+celery
+redis
+python-dotenv
+django-cors-headers
+python-telegram-bot
+pytest
+pytest-django
+pytest-cov
+pytest-factoryboy
+faker
+factory_boy
