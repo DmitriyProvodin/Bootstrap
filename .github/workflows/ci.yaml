@@ -3,8 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - develop
-      - main
+      - hw-01
 
 jobs:
   build:
